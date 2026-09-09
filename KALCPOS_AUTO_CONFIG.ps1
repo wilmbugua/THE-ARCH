@@ -1,0 +1,6 @@
+$KalcDbHost = "localhost"
+$KalcDbPort = "3306"
+$KalcDbName = "kalc_pos_web"
+$KalcDbUser = "root"
+$KalcDbPassword = "Kaisy@3030"
+$KalcServerPort = "8081"

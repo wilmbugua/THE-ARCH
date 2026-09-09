@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0F2D5C" />
+    <meta name="description" content="KALC POS restaurant point of sale for orders, payments, kitchen tickets, and back-office operations." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>KALC POS</title>
+    <script src="/assets/config.js"></script>
+    <script src="/assets/offline-login.js"></script>
+    <script src="/assets/login-page-tools-v13.js"></script>
+    <script src="/assets/touchscreen-keyboard.js"></script>
+    <script src="/assets/menu-import.js"></script>
+    <script src="/assets/payment-notification.js"></script>
+    <script src="/assets/payment-notification-settings.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations()
+          .then((registrations) => registrations.forEach((registration) => registration.unregister()))
+          .catch(() => {});
+      }
+    </script>
+    <script type="module" crossorigin src="/assets-v37/index-Bre56XE1.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets-v37/vendor-B4uO29qo.js">
+    <link rel="modulepreload" crossorigin href="/assets-v37/state-DebtBtz5.js">
+    <link rel="modulepreload" crossorigin href="/assets-v37/mui-Byyoc3D9.js">
+    <link rel="stylesheet" crossorigin href="/assets-v37/index-D2ksPdi9.css">
+    <link rel="stylesheet" href="/assets/login-button-override.css" />
+    <link rel="stylesheet" href="/assets/touchscreen-support.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div id="kalc-startup-fallback" style="min-height:100vh;display:grid;place-items:center;background:#F5F7FA;color:#0F172A;font-family:Segoe UI,Arial,sans-serif;padding:24px;text-align:center">
+        <div>
+          <img src="/brand/kalc-mark.svg" alt="KALC POS" style="width:72px;height:72px;margin-bottom:16px" />
+          <div style="font-size:20px;font-weight:800;margin-bottom:8px">Loading KALC POS...</div>
+          <div style="font-size:14px;color:#64748B">If this stays here, refresh once to update the app cache.</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__KALC_DIAGNOSTICS = {
+        startTime: performance.now(),
+        milestones: []
+      };
+      function mark(msg) {
+        window.__KALC_DIAGNOSTICS.milestones.push({
+          msg,
+          time: (performance.now() - window.__KALC_DIAGNOSTICS.startTime).toFixed(0) + 'ms'
+        });
+        console.log('[KALC-DIAG]', msg);
+      }
+      mark('Page loaded');
+      window.addEventListener('error', (e) => {
+        mark('ERROR: ' + e.message + ' at ' + e.filename + ':' + e.lineno);
+        console.error('[KALC-ERROR]', e);
+      });
+      window.addEventListener('unhandledrejection', (e) => {
+        mark('UNHANDLED REJECTION: ' + (e.reason ? e.reason.message || e.reason : 'unknown'));
+        console.error('[KALC-REJECTION]', e.reason);
+      });
+      const observer = new MutationObserver((mutations) => {
+        const root = document.getElementById('root');
+        const fallback = document.getElementById('kalc-startup-fallback');
+        if (root && root.children.length > 0 && !(root.children.length === 1 && fallback)) {
+          mark('React mounted to root');
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        const fallback = document.getElementById('kalc-startup-fallback');
+        if (!root || root.children.length === 0 || (root.children.length === 1 && fallback)) {
+          mark('WARNING: React did not mount after 5 seconds');
+          console.log('[KALC-DIAG] Diagnostics:', window.__KALC_DIAGNOSTICS);
+        }
+      }, 5000);
+    </script>
+  </body>
+</html>
+

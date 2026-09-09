@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-labelledby="title desc">
+  <title id="title">KALC POS wordmark</title>
+  <desc id="desc">KALC POS restaurant point of sale wordmark.</desc>
+  <defs>
+    <linearGradient id="markBlue" x1="8" y1="6" x2="82" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2D6CDF"/>
+      <stop offset="1" stop-color="#0F2D5C"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="88" height="88" rx="20" fill="url(#markBlue)"/>
+  <path d="M20 25h10v46H20V25Zm16 0h10v19.5L62 25h13L57.4 47l18.4 24H62.2L46 49.4V71H36V25Z" fill="#fff"/>
+  <path d="M70 22c5.4 0 9.8 4.4 9.8 9.8 0 4.5-3.1 8.3-7.2 9.4V71h-6.8V41.2c-4.2-1.1-7.2-4.9-7.2-9.4 0-5.4 4.4-9.8 9.8-9.8H70Z" fill="#EF8A23"/>
+  <text x="112" y="45" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="900" letter-spacing="1">KALC POS</text>
+  <text x="114" y="70" fill="#64748B" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Restaurant point of sale</text>
+  <rect x="326" y="25" width="70" height="28" rx="14" fill="#FFF3E0"/>
+  <text x="342" y="44" fill="#D97706" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">WEB</text>
+</svg>

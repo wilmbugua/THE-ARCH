@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">KALC POS mark</title>
+  <desc id="desc">Blue and orange restaurant point of sale brand mark.</desc>
+  <defs>
+    <linearGradient id="blue" x1="16" y1="10" x2="112" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2D6CDF"/>
+      <stop offset="1" stop-color="#0F2D5C"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="34" y1="32" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB84D"/>
+      <stop offset="1" stop-color="#EF8A23"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#blue)"/>
+  <path d="M26 34h14v60H26V34Zm21 0h14v25.6L82.4 34h17.4L76.2 62.5 101 94H83.2L61 65.8V94H47V34Z" fill="#fff"/>
+  <path d="M89 29c7 0 12.8 5.7 12.8 12.8 0 6.3-4.5 11.5-10.5 12.6v39.5H83V54.4c-6-1.1-10.5-6.3-10.5-12.6C72.5 34.7 78.3 29 85.3 29H89Z" fill="url(#orange)" opacity=".96"/>
+  <path d="M34 104h60" stroke="#FFB84D" stroke-width="6" stroke-linecap="round"/>
+</svg>

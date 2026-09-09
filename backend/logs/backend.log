@@ -1,0 +1,53 @@
+2026-08-16T12:22:03.258+03:00  INFO 8344 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 8344 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS\backend)
+2026-08-16T12:22:03.281+03:00  INFO 8344 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-16T12:22:09.023+03:00  INFO 8344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-16T12:22:09.050+03:00  INFO 8344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-16T12:22:09.051+03:00  INFO 8344 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-16T12:22:09.219+03:00  INFO 8344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-16T12:22:09.222+03:00  INFO 8344 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5642 ms
+2026-08-16T12:22:12.397+03:00  INFO 8344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-16T12:22:12.463+03:00  INFO 8344 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 11.66 seconds (process running for 13.545)
+2026-08-16T12:22:12.716+03:00  INFO 8344 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-16T12:22:13.283+03:00  INFO 8344 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@3009eed7
+2026-08-16T12:22:13.290+03:00  INFO 8344 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-16T12:22:14.006+03:00  INFO 8344 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-16T12:22:35.420+03:00  INFO 8344 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-16T12:22:35.424+03:00  INFO 8344 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-16T12:22:35.427+03:00  INFO 8344 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-16T12:24:13.626+03:00  INFO 1472 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 1472 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS\backend)
+2026-08-16T12:24:13.642+03:00  INFO 1472 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-16T12:24:18.765+03:00  INFO 1472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-16T12:24:18.799+03:00  INFO 1472 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-16T12:24:18.800+03:00  INFO 1472 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-16T12:24:18.944+03:00  INFO 1472 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-16T12:24:18.945+03:00  INFO 1472 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5021 ms
+2026-08-16T12:24:22.042+03:00  INFO 1472 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-16T12:24:22.107+03:00  INFO 1472 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 11.046 seconds (process running for 12.857)
+2026-08-16T12:24:22.325+03:00  INFO 1472 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-16T12:24:22.858+03:00  INFO 1472 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@147cc940
+2026-08-16T12:24:22.867+03:00  INFO 1472 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-16T12:24:23.605+03:00  INFO 1472 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-16T12:24:47.993+03:00  INFO 1472 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-16T12:24:47.995+03:00  INFO 1472 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-16T12:24:47.999+03:00  INFO 1472 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-16T12:28:36.043+03:00  INFO 10884 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 10884 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS\backend)
+2026-08-16T12:28:36.062+03:00  INFO 10884 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-16T12:28:42.674+03:00  INFO 10884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-16T12:28:42.741+03:00  INFO 10884 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-16T12:28:42.743+03:00  INFO 10884 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-16T12:28:43.034+03:00  INFO 10884 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-16T12:28:43.036+03:00  INFO 10884 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6727 ms
+2026-08-16T12:28:47.104+03:00  INFO 10884 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-08-16T12:28:47.406+03:00  INFO 10884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-16T12:28:47.463+03:00  INFO 10884 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 13.872 seconds (process running for 15.679)
+2026-08-16T12:28:47.977+03:00  INFO 10884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-16T12:28:48.615+03:00  INFO 10884 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@4269aad7
+2026-08-16T12:28:48.631+03:00  INFO 10884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-16T12:28:49.439+03:00  INFO 10884 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-16T12:28:52.230+03:00  INFO 10884 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-16T12:28:52.231+03:00  INFO 10884 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-16T12:28:52.237+03:00  INFO 10884 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-16T12:29:26.991+03:00 ERROR 10884 --- [http-nio-8081-exec-8] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-16T12:29:39.811+03:00  INFO 10884 --- [http-nio-8081-exec-8] com.kalcpos.api.AuthController           : PIN login attempt for username: 
+2026-08-16T12:29:40.850+03:00  INFO 10884 --- [http-nio-8081-exec-8] com.kalcpos.api.AuthController           : PIN login accepted for username: waiter
+2026-08-16T12:29:41.075+03:00 ERROR 10884 --- [http-nio-8081-exec-4] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"

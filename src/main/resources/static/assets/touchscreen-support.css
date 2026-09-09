@@ -1,0 +1,252 @@
+/* App-wide touchscreen usability overrides */
+:root {
+  --kalc-touch-target: 64px;
+  --kalc-touch-radius: 8px;
+}
+
+button,
+[role="button"],
+select,
+input,
+textarea {
+  min-height: var(--kalc-touch-target) !important;
+  font-size: 18px !important;
+  touch-action: manipulation !important;
+}
+
+button,
+[role="button"] {
+  cursor: pointer !important;
+  padding: 14px 18px !important;
+  border-radius: var(--kalc-touch-radius) !important;
+  -webkit-tap-highlight-color: rgba(45, 108, 223, .24) !important;
+}
+
+input,
+select,
+textarea {
+  padding: 14px 16px !important;
+  border-radius: var(--kalc-touch-radius) !important;
+}
+
+label {
+  line-height: 1.35 !important;
+}
+
+.workspace-layout,
+.waiter-page-menu .menu-panel,
+.orders-split-layout,
+.dashboard-grid,
+.printer-grid,
+.inventory-layout {
+  gap: 12px !important;
+}
+
+.dashboard-tabs,
+.waiter-page-tabs,
+.subcategory-tabs,
+.sales-filter-row,
+.menu-cart-actions,
+.printer-actions,
+.purchase-actions {
+  gap: 10px !important;
+}
+
+.dashboard-tabs button,
+.waiter-page-tabs button,
+.subcategory-tabs button,
+.sales-filter-row button,
+.bills-panel .panel-heading button,
+.cart-actions-row button,
+.menu-cart-actions button,
+.order-action-row button,
+.split-merge-row button {
+  min-height: 64px !important;
+  font-size: 16px !important;
+  white-space: normal !important;
+}
+
+.cart-qty-control button,
+.cart-delete-button {
+  min-width: 64px !important;
+  min-height: 64px !important;
+  font-size: 28px !important;
+}
+
+.cart-qty-control input,
+.bill-qty-input {
+  min-width: 72px !important;
+  min-height: 64px !important;
+  font-size: 24px !important;
+}
+
+.bill-card button {
+  min-height: 72px !important;
+  font-size: 18px !important;
+}
+
+.order-row,
+.printer-card,
+.bill-selection-row,
+.my-sales-row,
+.supplier-list > div,
+.stock-list > div,
+.purchase-history > div {
+  padding: 14px !important;
+}
+
+.kalc-touch-keyboard {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5000;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-top: 2px solid #0f2d5c;
+  background: #f8fafc;
+  box-shadow: 0 -12px 32px rgba(15, 23, 42, .28);
+  font-family: Segoe UI, Arial, sans-serif;
+}
+
+.kalc-touch-keyboard[hidden] {
+  display: none !important;
+}
+
+.kalc-touch-keyboard-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kalc-touch-keyboard-title {
+  min-width: 0;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kalc-touch-keyboard-keys {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.kalc-touch-keyboard.numeric .kalc-touch-keyboard-keys {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.kalc-touch-key {
+  min-height: 58px !important;
+  border: 0;
+  border-radius: 8px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 20px !important;
+  font-weight: 900;
+}
+
+.kalc-touch-key.action {
+  background: #0f2d5c;
+  color: #fff;
+}
+
+.kalc-touch-key.danger {
+  background: #ef4444;
+  color: #fff;
+}
+
+.kalc-touch-key.space {
+  grid-column: span 4;
+}
+
+.kalc-touch-key.wide {
+  grid-column: span 2;
+}
+
+.kalc-touch-spacer {
+  height: 250px;
+}
+
+.kalc-menu-import-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 12px;
+  padding: 10px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  background: #f8fbff;
+}
+
+.kalc-menu-import-button,
+.kalc-menu-template-button {
+  min-height: 68px !important;
+  padding: 16px 22px !important;
+  border: 0;
+  border-radius: 8px !important;
+  font-size: 18px !important;
+  font-weight: 900;
+}
+
+.kalc-menu-import-button {
+  background: #0f2d5c;
+  color: #fff;
+}
+
+.kalc-menu-template-button {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.kalc-menu-import-button:disabled {
+  opacity: .7;
+}
+
+.kalc-menu-import-input {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --kalc-touch-target: 58px;
+  }
+
+  button,
+  [role="button"],
+  select,
+  input,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .kalc-touch-keyboard-keys {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .kalc-touch-key {
+    min-height: 52px !important;
+    font-size: 18px !important;
+  }
+
+  .kalc-menu-import-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .kalc-menu-import-button,
+  .kalc-menu-template-button {
+    min-height: 58px !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+  }
+}

@@ -1,0 +1,58 @@
+2026-08-27T12:24:55.325+03:00  INFO 14804 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 14804 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS)
+2026-08-27T12:24:55.351+03:00  INFO 14804 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-27T12:24:59.309+03:00  INFO 14804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-27T12:24:59.329+03:00  INFO 14804 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-27T12:24:59.329+03:00  INFO 14804 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-27T12:24:59.415+03:00  INFO 14804 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-27T12:24:59.416+03:00  INFO 14804 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3883 ms
+2026-08-27T12:25:02.268+03:00  INFO 14804 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-08-27T12:25:02.517+03:00  INFO 14804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-27T12:25:02.563+03:00  INFO 14804 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 8.742 seconds (process running for 9.777)
+2026-08-27T12:25:02.853+03:00  INFO 14804 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-27T12:25:03.121+03:00  INFO 14804 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@222d9d4f
+2026-08-27T12:25:03.140+03:00  INFO 14804 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-27T12:25:03.807+03:00  INFO 14804 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-27T12:25:05.553+03:00  INFO 14804 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-27T12:25:05.553+03:00  INFO 14804 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-27T12:25:05.557+03:00  INFO 14804 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-27T12:25:36.613+03:00 ERROR 14804 --- [http-nio-8081-exec-10] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T17:32:33.075+03:00  INFO 424 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 424 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS)
+2026-08-27T17:32:33.093+03:00  INFO 424 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-27T17:32:39.009+03:00  INFO 424 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-27T17:32:39.066+03:00  INFO 424 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-27T17:32:39.067+03:00  INFO 424 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-27T17:32:39.191+03:00  INFO 424 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-27T17:32:39.193+03:00  INFO 424 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5812 ms
+2026-08-27T17:32:42.466+03:00  INFO 424 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-08-27T17:32:42.720+03:00  INFO 424 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-27T17:32:42.763+03:00  INFO 424 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 11.618 seconds (process running for 13.03)
+2026-08-27T17:32:43.138+03:00  INFO 424 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-27T17:32:43.548+03:00  INFO 424 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@7417ef4f
+2026-08-27T17:32:43.577+03:00  INFO 424 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-27T17:32:44.336+03:00  INFO 424 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-27T17:32:57.909+03:00  INFO 424 --- [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-27T17:32:57.909+03:00  INFO 424 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-27T17:32:57.913+03:00  INFO 424 --- [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-08-27T17:48:02.935+03:00  INFO 2924 --- [main] com.kalcpos.KalcposApplication           : Starting KalcposApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 2924 (D:\KALCPOS\backend\webpos-backend-0.0.1-SNAPSHOT.jar started by USER in D:\KALCPOS)
+2026-08-27T17:48:02.948+03:00  INFO 2924 --- [main] com.kalcpos.KalcposApplication           : The following 1 profile is active: "server"
+2026-08-27T17:48:09.250+03:00  INFO 2924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-08-27T17:48:09.304+03:00  INFO 2924 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-27T17:48:09.305+03:00  INFO 2924 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2026-08-27T17:48:09.439+03:00  INFO 2924 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-27T17:48:09.440+03:00  INFO 2924 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6246 ms
+2026-08-27T17:48:13.076+03:00  INFO 2924 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-08-27T17:48:13.314+03:00  INFO 2924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-08-27T17:48:13.369+03:00  INFO 2924 --- [main] com.kalcpos.KalcposApplication           : Started KalcposApplication in 12.736 seconds (process running for 14.306)
+2026-08-27T17:48:13.738+03:00  INFO 2924 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-27T17:48:14.082+03:00  INFO 2924 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@7417ef4f
+2026-08-27T17:48:14.095+03:00  INFO 2924 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-27T17:48:14.909+03:00  INFO 2924 --- [main] c.k.service.DefaultUserInitializer       : Default login users are synced and active
+2026-08-27T17:48:20.827+03:00  INFO 2924 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-27T17:48:20.828+03:00  INFO 2924 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-27T17:48:20.834+03:00  INFO 2924 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-27T17:50:21.356+03:00 ERROR 2924 --- [http-nio-8081-exec-2] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T17:55:03.656+03:00 ERROR 2924 --- [http-nio-8081-exec-3] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T18:00:04.246+03:00 ERROR 2924 --- [http-nio-8081-exec-3] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T18:03:02.020+03:00 ERROR 2924 --- [http-nio-8081-exec-10] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T18:07:04.871+03:00 ERROR 2924 --- [http-nio-8081-exec-2] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"
+2026-08-27T18:07:53.619+03:00 ERROR 2924 --- [http-nio-8081-exec-3] o.s.w.s.s.s.DefaultHandshakeHandler      : "Handshake failed due to invalid Connection header[]"

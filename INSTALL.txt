@@ -1,0 +1,106 @@
+﻿KALCPOS Production Install Package
+Build date: 2026-07-22
+
+WHAT IS INCLUDED
+- backend\webpos-backend-0.0.1-SNAPSHOT.jar
+- frontend\ static browser build, also embedded in the backend JAR
+- database\run_migrations.sql
+- database\init_users.sql
+- START_KALCPOS.bat
+- START_KALCPOS.ps1
+- START_KALCPOS_AUTO.ps1
+- INSTALL_KALCPOS_AUTOSTART.ps1
+- INSTALL_AND_START_KALCPOS.bat
+
+SERVER REQUIREMENTS
+- Windows 10/11 or Windows Server 2016+
+- Java 17 or newer, Eclipse Temurin 17 LTS recommended
+- MariaDB 10.5+ or 10.11 LTS recommended, or MySQL 8.0+
+- Chrome, Edge, or Firefox current version
+- Windows PowerShell 5.1 or PowerShell 7+
+- Port 8000 open on the server firewall for client computers
+- Port 8081 open locally on the server for the backend
+
+For the full installation guide, open:
+HOW_TO_INSTALL_KALCPOS.md
+
+That guide also includes:
+- How to connect client computers to the server POS
+- How to modify or add new features in future
+- How to rebuild and replace the backend JAR
+- How to apply future database changes
+
+INSTALL ON THE SERVER COMPUTER
+1. Extract this folder to a permanent location, for example:
+   D:\KALCPOS
+
+2. Install Java 17 or newer.
+   Verify in PowerShell:
+   java -version
+
+3. Install MariaDB or MySQL and make sure the database service is running.
+
+4. Create the database.
+   Open a MariaDB/MySQL command prompt as root and run:
+   CREATE DATABASE IF NOT EXISTS kalc_pos_web CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+5. Load the database schema and starter users.
+   From this package folder, run:
+   mysql -u root -p kalc_pos_web < database\run_migrations.sql
+   mysql -u root -p kalc_pos_web < database\init_users.sql
+
+6. Install auto-start and start KALCPOS.
+   Double-click INSTALL_AND_START_KALCPOS.bat
+
+   This registers a Windows logon scheduled task named:
+   KALCPOS Auto Start
+
+   After a computer restart, KALCPOS will start automatically when this Windows user logs in.
+
+   If your database password is not the default, run this in PowerShell instead:
+   .\INSTALL_KALCPOS_AUTOSTART.ps1 -DbUser "root" -DbPassword "YOUR_DATABASE_PASSWORD"
+   .\START_KALCPOS_AUTO.ps1
+
+7. Open the app on the server:
+   http://127.0.0.1:8000
+
+INSTALL ON OTHER COMPUTERS
+No installation is needed on client computers.
+
+1. Make sure the client computer is on the same network as the server.
+2. Open Chrome, Edge, or Firefox.
+3. Browse to:
+   http://SERVER_IP_ADDRESS:8000
+
+To find the server IP address, run this on the server:
+ipconfig
+
+DEFAULT LOGIN PINS
+- admin: 11112222
+- manager: 22223333
+- super_waiter: 33334444
+- waiter: 44445555
+- supervisor: 55556666
+
+Change default PINs before production use.
+
+FIREWALL
+If other computers cannot open the app, allow TCP port 8000 through Windows Firewall on the server.
+PowerShell command as Administrator:
+New-NetFirewallRule -DisplayName "KALCPOS 8000" -Direction Inbound -Protocol TCP -LocalPort 8000 -Action Allow
+
+STOPPING THE APP
+To stop the backend and frontend proxy, use Task Manager or PowerShell to stop the KALCPOS Java and proxy PowerShell processes.
+To disable automatic startup, open Task Scheduler and disable or delete:
+KALCPOS Auto Start
+
+TROUBLESHOOTING
+- If Java is not found, install Java 17 and reopen PowerShell.
+- If database login fails, rerun START_KALCPOS.ps1 with the correct -DbUser and -DbPassword.
+- If port 8081 is already in use, stop the other app or run:
+  .\START_KALCPOS.ps1 -ServerPort "8082"
+- If port 8000 is already in use, stop the other app using port 8000 before running START_KALCPOS_AUTO.ps1.
+- Logs are written to:
+  logs\kalcpos-backend.log
+  frontend\proxy_requests.log
+

@@ -1,0 +1,23 @@
+{
+  "name": "KALC POS",
+  "short_name": "KALC POS",
+  "description": "Restaurant point of sale for orders, payments, kitchen tickets, and back-office operations.",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "background_color": "#0F2D5C",
+  "theme_color": "#0F2D5C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/brand/kalc-mark.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/brand/kalc-wordmark.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
