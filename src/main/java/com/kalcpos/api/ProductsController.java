@@ -1,5 +1,8 @@
 package com.kalcpos.api;
 
+import com.kalcpos.util.AuthenticationHelper;
+import com.kalcpos.util.ControllerUtils;
+import com.kalcpos.util.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +13,10 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * Product management controller.
+ * Handles product CRUD, categories, and CSV import.
+ */
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(maxAge = 3600)
@@ -31,7 +38,7 @@ public class ProductsController {
                     FROM products
                     WHERE active = 1 AND tab = ? AND subcategory = ?
                     ORDER BY name
-                    """, normalizeTab(tab), normalizeKey(subcategory));
+                    """, StringUtils.normalizeTab(tab), StringUtils.normalizeKey(subcategory));
         }
         return jdbc.queryForList("""
                 SELECT id, name, tab, subcategory, price_ksh, image_url, active
@@ -54,16 +61,17 @@ public class ProductsController {
     public ResponseEntity<Map<String, Object>> createProduct(
             @RequestBody Map<String, Object> body,
             @RequestHeader(value = "Authorization", required = false) String authorization) {
-        ResponseEntity<Map<String, Object>> auth = requireManager(authorization);
+        ResponseEntity<Map<String, Object>> auth = AuthenticationHelper.requireManager(jdbc, authorization);
         if (auth != null) return auth;
+        
         ProductInput input = productInput(body);
-        if (input.error() != null) return badRequest(input.error());
+        if (input.error() != null) return ControllerUtils.badRequest(input.error());
 
         jdbc.update("""
                 INSERT INTO products (name, tab, subcategory, price_ksh, image_url, active)
                 VALUES (?, ?, ?, ?, ?, 1)
                 """, input.name(), input.tab(), input.subcategory(), input.price(), input.imageUrl());
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("success", true));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ControllerUtils.successResponse());
     }
 
     @PatchMapping("/products/{id}")
@@ -71,28 +79,30 @@ public class ProductsController {
             @PathVariable long id,
             @RequestBody Map<String, Object> body,
             @RequestHeader(value = "Authorization", required = false) String authorization) {
-        ResponseEntity<Map<String, Object>> auth = requireManager(authorization);
+        ResponseEntity<Map<String, Object>> auth = AuthenticationHelper.requireManager(jdbc, authorization);
         if (auth != null) return auth;
+        
         ProductInput input = productInput(body);
-        if (input.error() != null) return badRequest(input.error());
+        if (input.error() != null) return ControllerUtils.badRequest(input.error());
 
         int updated = jdbc.update("""
                 UPDATE products
                 SET name = ?, tab = ?, subcategory = ?, price_ksh = ?, image_url = ?
                 WHERE id = ?
                 """, input.name(), input.tab(), input.subcategory(), input.price(), input.imageUrl(), id);
-        if (updated == 0) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Product not found."));
-        return ResponseEntity.ok(Map.of("success", true));
+        if (updated == 0) return ControllerUtils.notFound("Product not found.");
+        return ResponseEntity.ok(ControllerUtils.successResponse());
     }
 
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Map<String, Object>> deleteProduct(
             @PathVariable long id,
             @RequestHeader(value = "Authorization", required = false) String authorization) {
-        ResponseEntity<Map<String, Object>> auth = requireManager(authorization);
+        ResponseEntity<Map<String, Object>> auth = AuthenticationHelper.requireManager(jdbc, authorization);
         if (auth != null) return auth;
+        
         jdbc.update("UPDATE products SET active = 0 WHERE id = ?", id);
-        return ResponseEntity.ok(Map.of("success", true));
+        return ResponseEntity.ok(ControllerUtils.successResponse());
     }
 
     @PostMapping("/products/import")
@@ -100,21 +110,22 @@ public class ProductsController {
             @RequestParam("file") MultipartFile file,
             @RequestParam(defaultValue = "bar") String tab,
             @RequestHeader(value = "Authorization", required = false) String authorization) throws Exception {
-        ResponseEntity<Map<String, Object>> auth = requireManager(authorization);
+        ResponseEntity<Map<String, Object>> auth = AuthenticationHelper.requireManager(jdbc, authorization);
         if (auth != null) return auth;
-        if (file.isEmpty()) return badRequest("Choose a CSV spreadsheet file.");
+        
+        if (file.isEmpty()) return ControllerUtils.badRequest("Choose a CSV spreadsheet file.");
 
-        String targetTab = normalizeTab(tab);
+        String targetTab = StringUtils.normalizeTab(tab);
         String csv = new String(file.getBytes(), StandardCharsets.UTF_8).replace("\uFEFF", "");
         List<List<String>> rows = parseCsv(csv);
-        if (rows.isEmpty()) return badRequest("Spreadsheet is empty.");
+        if (rows.isEmpty()) return ControllerUtils.badRequest("Spreadsheet is empty.");
 
         Map<String, Integer> headers = headerMap(rows.get(0));
         int nameCol = firstHeader(headers, "item", "name", "product", "menu item");
         int categoryCol = firstHeader(headers, "category", "subcategory", "group");
         int priceCol = firstHeader(headers, "selling price", "price", "price_ksh", "amount");
         if (nameCol < 0 || priceCol < 0) {
-            return badRequest("CSV must include Item and Selling Price columns.");
+            return ControllerUtils.badRequest("CSV must include Item and Selling Price columns.");
         }
 
         int imported = 0;
@@ -123,9 +134,9 @@ public class ProductsController {
         List<String> errors = new ArrayList<>();
         for (int i = 1; i < rows.size(); i++) {
             List<String> row = rows.get(i);
-            String name = cell(row, nameCol).trim();
-            String category = categoryCol >= 0 ? cell(row, categoryCol).trim() : "Imported";
-            String priceText = cell(row, priceCol).replace(",", "").trim();
+            String name = StringUtils.cell(row, nameCol).trim();
+            String category = categoryCol >= 0 ? StringUtils.cell(row, categoryCol).trim() : "Imported";
+            String priceText = StringUtils.cell(row, priceCol).replace(",", "").trim();
             if (name.isBlank()) {
                 skipped++;
                 continue;
@@ -139,7 +150,7 @@ public class ProductsController {
                 continue;
             }
 
-            String subcategory = normalizeKey(category.isBlank() ? "Imported" : category);
+            String subcategory = StringUtils.normalizeKey(category.isBlank() ? "Imported" : category);
             ensureCategory(targetTab, subcategory, category.isBlank() ? "Imported" : category);
             List<Map<String, Object>> existing = jdbc.queryForList(
                     "SELECT id FROM products WHERE LOWER(name) = LOWER(?) AND tab = ? LIMIT 1", name, targetTab);
@@ -183,33 +194,34 @@ public class ProductsController {
     public ResponseEntity<Map<String, Object>> createCategory(
             @RequestBody Map<String, Object> body,
             @RequestHeader(value = "Authorization", required = false) String authorization) {
-        ResponseEntity<Map<String, Object>> auth = requireManager(authorization);
+        ResponseEntity<Map<String, Object>> auth = AuthenticationHelper.requireManager(jdbc, authorization);
         if (auth != null) return auth;
-        String tab = normalizeTab(String.valueOf(body.getOrDefault("tab", "kitchen")));
+        
+        String tab = StringUtils.normalizeTab(String.valueOf(body.getOrDefault("tab", "kitchen")));
         String label = String.valueOf(body.getOrDefault("label", "")).trim();
-        if (label.isBlank()) return badRequest("Category name is required.");
-        ensureCategory(tab, normalizeKey(label), label);
-        return ResponseEntity.ok(Map.of("success", true));
+        if (label.isBlank()) return ControllerUtils.badRequest("Category name is required.");
+        ensureCategory(tab, StringUtils.normalizeKey(label), label);
+        return ResponseEntity.ok(ControllerUtils.successResponse());
     }
 
     @PatchMapping("/product-categories/{id}")
     public ResponseEntity<Map<String, Object>> updateCategory(@PathVariable long id, @RequestBody Map<String, Object> body) {
         String label = String.valueOf(body.getOrDefault("label", "")).trim();
-        if (label.isBlank()) return badRequest("Category name is required.");
-        jdbc.update("UPDATE product_categories SET label = ?, category_key = ? WHERE id = ?", label, normalizeKey(label), id);
-        return ResponseEntity.ok(Map.of("success", true));
+        if (label.isBlank()) return ControllerUtils.badRequest("Category name is required.");
+        jdbc.update("UPDATE product_categories SET label = ?, category_key = ? WHERE id = ?", label, StringUtils.normalizeKey(label), id);
+        return ResponseEntity.ok(ControllerUtils.successResponse());
     }
 
     @DeleteMapping("/product-categories/{id}")
     public ResponseEntity<Map<String, Object>> deleteCategory(@PathVariable long id) {
         jdbc.update("UPDATE product_categories SET active = 0 WHERE id = ?", id);
-        return ResponseEntity.ok(Map.of("success", true));
+        return ResponseEntity.ok(ControllerUtils.successResponse());
     }
 
     private ProductInput productInput(Map<String, Object> body) {
         String name = String.valueOf(body.getOrDefault("name", "")).trim();
-        String tab = normalizeTab(String.valueOf(body.getOrDefault("tab", "kitchen")));
-        String subcategory = normalizeKey(String.valueOf(body.getOrDefault("subcategory", "mains")));
+        String tab = StringUtils.normalizeTab(String.valueOf(body.getOrDefault("tab", "kitchen")));
+        String subcategory = StringUtils.normalizeKey(String.valueOf(body.getOrDefault("subcategory", "mains")));
         String imageUrl = String.valueOf(body.getOrDefault("imageUrl", body.getOrDefault("image_url", DEFAULT_IMAGE))).trim();
         if (imageUrl.isBlank()) imageUrl = DEFAULT_IMAGE;
         if (name.isBlank()) return new ProductInput(null, null, null, null, null, "Item name is required.");
@@ -220,22 +232,6 @@ public class ProductsController {
             return new ProductInput(null, null, null, null, null, "Price is invalid.");
         }
         return new ProductInput(name, tab, subcategory, price, imageUrl, null);
-    }
-
-    private ResponseEntity<Map<String, Object>> requireManager(String authorization) {
-        String token = authorization == null ? "" : authorization.replaceFirst("(?i)^Bearer\\s+", "");
-        List<Map<String, Object>> rows = jdbc.queryForList("""
-                SELECT u.role
-                FROM auth_sessions s
-                JOIN users u ON u.id = s.user_id
-                WHERE s.token = ? AND s.expires_at > CURRENT_TIMESTAMP AND u.active = 1
-                """, token);
-        if (rows.isEmpty()) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Unauthorized"));
-        String role = String.valueOf(rows.get(0).get("role"));
-        if (!Set.of("admin", "manager").contains(role)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("message", "Insufficient permissions."));
-        }
-        return null;
     }
 
     private void ensureCategory(String tab, String key, String label) {
@@ -262,15 +258,6 @@ public class ProductsController {
                 """);
     }
 
-    private String normalizeTab(String value) {
-        return "bar".equalsIgnoreCase(value) ? "bar" : "kitchen";
-    }
-
-    private String normalizeKey(String value) {
-        String key = value == null ? "" : value.trim().toLowerCase().replaceAll("[^a-z0-9]+", "_").replaceAll("^_+|_+$", "");
-        return key.isBlank() ? "imported" : key.substring(0, Math.min(40, key.length()));
-    }
-
     private Map<String, Integer> headerMap(List<String> row) {
         Map<String, Integer> headers = new HashMap<>();
         for (int i = 0; i < row.size(); i++) {
@@ -284,10 +271,6 @@ public class ProductsController {
             if (headers.containsKey(name)) return headers.get(name);
         }
         return -1;
-    }
-
-    private String cell(List<String> row, int index) {
-        return index >= 0 && index < row.size() ? row.get(index) : "";
     }
 
     private List<List<String>> parseCsv(String csv) {
@@ -323,10 +306,6 @@ public class ProductsController {
         row.add(cell.toString().replace("\r", ""));
         if (row.stream().anyMatch(value -> !value.isBlank())) rows.add(row);
         return rows;
-    }
-
-    private ResponseEntity<Map<String, Object>> badRequest(String message) {
-        return ResponseEntity.badRequest().body(Map.of("message", message));
     }
 
     private record ProductInput(String name, String tab, String subcategory, BigDecimal price, String imageUrl, String error) {
